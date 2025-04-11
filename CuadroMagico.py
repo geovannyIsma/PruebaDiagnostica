@@ -1,8 +1,9 @@
 from utils import generar_numeros_aleatorios
-from ArbolBInarioAVL import ArbolBinarioAVL
+from ArbolBInarioAVL import ArbolAVL
 
-nums = sorted(generar_numeros_aleatorios(1, 50, 9))
+nums = generar_numeros_aleatorios(1, 50, 9)
 print("Numeros: ", nums)
+nums.sort()
 
 CONSTATE_MAGICA = sum(nums) // 3
 print("Constante magica: ", CONSTATE_MAGICA)
@@ -87,14 +88,12 @@ if verificar_cuadro(cuadro, CONSTATE_MAGICA):
 else:
     print("Error al completar el cuadro mágico:")
 
-arbol = ArbolBinarioAVL(cuadro[1][1])
-for fila in cuadro:
-    for num in fila:
-        if num != cuadro[1][1]:
-            arbol.insertar(num)
+arbol = ArbolAVL()
+for num in nums:
+    arbol.insertar(num)
 
-print("\nÁrbol binario generado a partir del cuadro mágico:")
-arbol.imprimir_arbol()
+print("Árbol AVL creado con los números del cuadro mágico.")
+arbol.imprimir()
 
-print("\nRecorrido inorden del árbol binario:")
-print(arbol.recorrido_inorden())
+print("Recorrido inorden del árbol AVL:")
+arbol.recorrido_inorden()
